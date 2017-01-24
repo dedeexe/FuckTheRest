@@ -7,3 +7,11 @@
 //
 
 import Foundation
+
+internal func extractStringFromData(data:Data) -> String {
+    guard let convertedString = String(data: data, encoding: .utf8) else {
+        return ""
+    }
+    
+    return convertedString
+}

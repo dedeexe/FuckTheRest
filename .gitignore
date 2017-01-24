@@ -16,11 +16,8 @@ DerivedData
 *.hmap
 *.ipa
 *.xcuserstate
-*xcworkspace
 .DS_Store
 
-#Fabric
-Fabric.framework/
 
 # CocoaPods
 #
@@ -35,5 +32,3 @@ upload_dsym_results
 
 #Merge Files
 *.orig
-
-belezanaweb/dSYM/output/

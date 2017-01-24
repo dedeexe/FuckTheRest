@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import FuckTheRest
 
 class HelpersTest: XCTestCase {
     
@@ -20,15 +21,26 @@ class HelpersTest: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func testStringFromData()
+    {
+        let text = UUID().uuidString
+        
+        guard let data = text.data(using: .utf8) else {
+            XCTFail("Fail to convert text to data")
+            return
+        }
+        
+        let resultTest = FuckingResult<Data>.success(200, data)
+        let result = resultTest.map(extractStringFromData)
+
+        switch result
+        {
+            case .success(_ , let value):
+                if value != text {
+                    XCTFail("Source information and Processed information are differents")
+                }
+            case .error( _ ):
+                XCTFail("A not expected value appeared.")
         }
     }
     

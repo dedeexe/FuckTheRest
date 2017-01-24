@@ -7,3 +7,21 @@
 //
 
 import Foundation
+
+public enum FuckingResult<T> {
+    case success(Int, T)
+    case error(Error)
+}
+
+public extension FuckingResult {
+    public func map<U>(_ fnc:(T) -> U) -> FuckingResult<U>
+    {
+        switch self {
+            case .success(let statusCode, let resultValue):
+                let mappedResult = fnc(resultValue)
+                return FuckingResult<U>.success(statusCode, mappedResult)
+            case .error(let error):
+                return FuckingResult<U>.error(error)
+        }
+    }
+}
